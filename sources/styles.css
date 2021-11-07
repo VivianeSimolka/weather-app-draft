@@ -36,6 +36,10 @@ button:hover {
   border-color: 47668b;
 }
 
+footer {
+  line-height: 50px;
+}
+
 .day {
   border: none;
   line-height: 2;
