@@ -1,0 +1,85 @@
+body {
+  padding: 10px;
+  font-family: Cerebri Sans, Helvetica, Arial, sans-serif;
+  text-align: center;
+}
+h1,
+h2 {
+  color: #47668b;
+  text-align: center;
+  font-size: 50px;
+  line-height: 50px;
+  margin: 10px 0;
+}
+
+p {
+  margin: 0;
+}
+
+hr {
+  margin: 2%;
+}
+.day {
+  border: none;
+  line-height: 2;
+}
+
+.container {
+  max-width: 800px;
+}
+
+.main {
+  padding: 20px 10px;
+}
+
+.selection-menu {
+  position: fixed;
+  top: 0;
+}
+.btn-primary {
+  line-height: 2.8;
+  background-color: #5e87b8;
+  border-color: #5e87b8;
+}
+
+.btn-primary:hover {
+  background-color: 47668b;
+  border-color: 47668b;
+}
+
+.form-select {
+  line-height: 2.8;
+  width: 70px;
+  align-items: end;
+  margin-right: 0;
+}
+
+.city-logo,
+.rain-logo {
+  display: inline;
+  position: absolute;
+  width: 150px;
+  max-height: 60%;
+}
+
+.city-logo {
+  left: 100px;
+  top: 100px;
+}
+
+.rain-logo {
+  right: 100px;
+  top: 100px;
+}
+
+.weather-logo {
+  font-size: 50px;
+  color: #5e87b8;
+  line-height: 100px;
+}
+.card-text {
+  padding: 5px;
+}
+.max-temp {
+  font-weight: bold;
+}
