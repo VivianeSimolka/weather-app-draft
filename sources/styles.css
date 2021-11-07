@@ -24,6 +24,18 @@ p {
 hr {
   margin: 2%;
 }
+
+button {
+  line-height: 2.8;
+  background-color: #5e87b8;
+  border-color: #5e87b8;
+}
+
+button:hover {
+  background-color: 47668b;
+  border-color: 47668b;
+}
+
 .day {
   border: none;
   line-height: 2;

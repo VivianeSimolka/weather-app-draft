@@ -1,4 +1,4 @@
-// #1: display the current date and time using JavaScript: Tuesday 16:00
+//  display the current date and time
 
 let days = [
   "Sunday",
@@ -18,40 +18,77 @@ if (hours < 10) {
 }
 let minutes = now.getMinutes();
 if (minutes < 10) {
-  minutes = `0${hours}`;
+  minutes = `0${minutes}`;
 }
 
 let currentDate = `${day} ${hours}:${minutes}`;
 let date = document.querySelector("#current-date");
 date.innerHTML = currentDate;
 
-// #2: Add a search engine, when searching for a city (i.e. Paris),
-//  display the city name on the page after the user submits the form.
+// when searching for a city, display the city name on the page after the user submits the form.
 
-let city = document.querySelector("h1");
+function showWeather(response) {
+  let currentTemp = document.querySelector("#current-temp");
+  let currentCity = document.querySelector("h1");
+  let temperature = Math.round(response.data.main.temp);
+  let city = response.data.name;
+  currentCity.innerHTML = city;
+  currentTemp.innerHTML = `${temperature}`;
+}
 
 function updateCity(event) {
   event.preventDefault();
   let selectedCity = document.querySelector("#floatingInput");
   let currentCity = document.querySelector("h1");
   currentCity.innerHTML = `${selectedCity.value}`;
+  let apiKey = "6810fbd82d0a172a870e47bd04543f6c";
+  let unit = "metric";
+  let apiURL = `https://api.openweathermap.org/data/2.5/weather?q=${selectedCity.value}&units=${unit}&appid=${apiKey}`;
+  axios.get(apiURL).then(showWeather);
 }
 
 let form = document.querySelector("#city-choice");
 form.addEventListener("submit", updateCity);
 
-// #3: Display a fake temperature (i.e 17) in Celsius and add a link to convert it to Fahrenheit.
-// When clicking on it, it should convert the temperature to Fahrenheit.
-// When clicking on Celsius, it should convert it back to Celsius.
-
-function updateToCelcius() {
-  let temp = document.querySelector("#current-temp");
-  temp.innerHTML = "9";
+// show current weather location
+function retrievePosition(position) {
+  let apiKey = "6810fbd82d0a172a870e47bd04543f6c";
+  let lat = position.coords.latitude;
+  let lon = position.coords.longitude;
+  let url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=metric&appid=${apiKey}`;
+  axios.get(url).then(showWeather);
 }
 
-function updateToFahrenheit() {
+function updateLocation(event) {
+  event.preventDefault();
+  navigator.geolocation.getCurrentPosition(retrievePosition);
+}
+
+let locateMe = document.querySelector("#locate-me");
+locateMe.addEventListener("click", updateLocation);
+
+// Update Celcius / Fahrenheit currently not working
+
+function updateToCelcius(event) {
+  event.preventDefault();
   let temp = document.querySelector("#current-temp");
-  temp.innerHTML = "48";
+  let city = "Berlin";
+  let apiKey = "6810fbd82d0a172a870e47bd04543f6c";
+  let unit = "metric";
+  let apiURL = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=${unit}&appid=${apiKey}`;
+  axios.get(apiURL).then(showWeather);
+}
+
+function updateToFahrenheit(event) {
+  event.preventDefault();
+  let temp = document.querySelector("#current-temp");
+  let city = "Berlin";
+  console.log(city);
+  let apiKey = "6810fbd82d0a172a870e47bd04543f6c";
+  let unit = "imperial";
+  let apiURL = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=${unit}&appid=${apiKey}`;
+  console.log(apiURL);
+  axios.get(apiURL).then(showWeather);
 }
 
 let celcius = document.querySelector("#celcius");
